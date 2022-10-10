@@ -18,6 +18,10 @@ export function AuthContextProvider({children}) {
         return auth.createUserWithEmailAndPassword(email, password);
     }
 
+    function login(email, password){
+        return auth.signInWithEmailAndPassword(email, password);
+    }
+
     //call only when we mount component
     useEffect(()=>{
         const unsubscribe = auth.onAuthStateChanged(user=>{
@@ -30,7 +34,8 @@ export function AuthContextProvider({children}) {
 
     const value = {
         currentUser,
-        signup
+        signup,
+        login
     }
 
     return (
