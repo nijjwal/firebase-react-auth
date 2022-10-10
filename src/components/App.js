@@ -6,6 +6,7 @@ import {AuthContextProvider} from '../contexts/AuthContext'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import PrivateRoute from "./PrivateRoute"
 import ForgotPassword  from "./ForgotPassword";
+import UpdateProfile from "./UpdateProfile";
 
 function App() {
   return (     
@@ -21,6 +22,7 @@ function App() {
                   {/* Wrap the Component that needs authentication with PrivateRoute*/}
                   <Route path="/" element={<PrivateRoute> <Dashboard /></PrivateRoute>}></Route>
                   <Route path="/dashboard" element={<PrivateRoute> <Dashboard /></PrivateRoute>}></Route>
+                  <Route path="/update-profile" element={<PrivateRoute> <UpdateProfile /></PrivateRoute>}></Route>
                   <Route path="/signup" element={<Signup/>}></Route>
                   <Route path="/login" element={<Login/>}></Route>
                   <Route path="/forgot-password" element={<ForgotPassword/>}></Route>
