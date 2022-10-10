@@ -13,7 +13,7 @@ export function AuthContextProvider({children}) {
 
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState();
-    const [email, setEmail] = useState();
+    const [email, setEmail] = useState('');
 
     function signup(email, password){
         return auth.createUserWithEmailAndPassword(email, password);
@@ -23,11 +23,19 @@ export function AuthContextProvider({children}) {
         return auth.signInWithEmailAndPassword(email, password);
     }
 
+    function logout() {
+        return auth.signOut()
+    }
+
     //call only when we mount component
     useEffect(()=>{
         const unsubscribe = auth.onAuthStateChanged(user=>{
             setCurrentUser(user)
-            setEmail(user.email)
+            
+            if(user!==null){
+                setEmail(user.email)
+            }
+            
             setLoading(false)
         })
 
@@ -38,7 +46,8 @@ export function AuthContextProvider({children}) {
         currentUser,
         signup,
         login,
-        email
+        email,
+        logout
     }
 
     return (

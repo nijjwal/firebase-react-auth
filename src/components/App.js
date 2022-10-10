@@ -4,6 +4,7 @@ import Login from "./Login";
 import {Container} from 'react-bootstrap';
 import {AuthContextProvider} from '../contexts/AuthContext'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import PrivateRoute from "./PrivateRoute"
 
 function App() {
   return (     
@@ -16,7 +17,9 @@ function App() {
 
               <AuthContextProvider>
                 <Routes>
-                  <Route exact path = "/"  element={<Dashboard/>}></Route>
+                  {/* Wrap the Component that needs authentication with PrivateRoute*/}
+                  <Route path="/" element={<PrivateRoute> <Dashboard /></PrivateRoute>}></Route>
+                  <Route path="/dashboard" element={<PrivateRoute> <Dashboard /></PrivateRoute>}></Route>
                   <Route path="/signup" element={<Signup/>}></Route>
                   <Route path="/login" element={<Login/>}></Route>
                 </Routes>
