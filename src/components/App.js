@@ -5,6 +5,7 @@ import {Container} from 'react-bootstrap';
 import {AuthContextProvider} from '../contexts/AuthContext'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import PrivateRoute from "./PrivateRoute"
+import ForgotPassword  from "./ForgotPassword";
 
 function App() {
   return (     
@@ -22,6 +23,7 @@ function App() {
                   <Route path="/dashboard" element={<PrivateRoute> <Dashboard /></PrivateRoute>}></Route>
                   <Route path="/signup" element={<Signup/>}></Route>
                   <Route path="/login" element={<Login/>}></Route>
+                  <Route path="/forgot-password" element={<ForgotPassword/>}></Route>
                 </Routes>
               </AuthContextProvider>
 

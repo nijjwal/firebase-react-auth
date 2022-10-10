@@ -27,6 +27,10 @@ export function AuthContextProvider({children}) {
         return auth.signOut()
     }
 
+    function resetPassword(email){
+        return auth.sendPasswordResetEmail(email);
+    }
+
     //call only when we mount component
     useEffect(()=>{
         const unsubscribe = auth.onAuthStateChanged(user=>{
@@ -47,7 +51,8 @@ export function AuthContextProvider({children}) {
         signup,
         login,
         email,
-        logout
+        logout,
+        resetPassword
     }
 
     return (
